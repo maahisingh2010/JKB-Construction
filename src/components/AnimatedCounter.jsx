@@ -4,7 +4,7 @@ import { useInView, animate, motion } from 'framer-motion';
 const AnimatedCounter = ({ value, label, duration = 2, delay = 0 }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  
+
   // Extract number and suffix (like "+", "%")
   const numValue = parseFloat(value.replace(/[^0-9.]/g, '')) || 0;
   const suffix = value.replace(/[0-9.]/g, '');
@@ -18,7 +18,7 @@ const AnimatedCounter = ({ value, label, duration = 2, delay = 0 }) => {
         delay: delay,
         ease: "easeOut",
         onUpdate(latest) {
-          // If the original value had a decimal, keep it, otherwise floor it
+          // If the original value had a decimal, keep it, otherwise floor   it
           if (value.includes('.')) {
             setDisplayValue(latest.toFixed(1));
           } else {
@@ -28,12 +28,12 @@ const AnimatedCounter = ({ value, label, duration = 2, delay = 0 }) => {
       });
       return () => controls.stop();
     }
-  }, [inView, numValue, duration, delay, value]);
+  }, [inView, numValue, duration, delay, value]); 1``
 
   return (
     <div ref={ref} className="relative p-6 group">
       <div className="absolute inset-0 border border-white/10 rounded-sm transform scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" />
-      <motion.div 
+      <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
         transition={{ type: "spring", delay: delay }}
