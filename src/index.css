@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-slate-800 bg-white antialiased overflow-x-hidden;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-slate-200;
+  }
+
+  /* Fixed classes without arbitrary spaces to avoid PostCSS errors */
+  .glow-orange {
+    box-shadow: 0 0 30px -5px rgba(241,90,36,0.3);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 30px -5px rgba(27,20,100,0.3);
+  }
+
+  .clip-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  }
+  
+  .clip-slant-reverse {
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
