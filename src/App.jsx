@@ -8,8 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import Enquiry from './pages/Enquiry';
-import JointVentures from './pages/JointVentures';
+import EnquiryJV from './pages/EnquiryJV';
 import ScrollToTop from './components/ScrollToTop';
 
 const PageWrapper = ({ children }) => {
@@ -35,8 +34,8 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
         <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-        <Route path="/enquiry" element={<PageWrapper><Enquiry /></PageWrapper>} />
-        <Route path="/jointventures" element={<PageWrapper><JointVentures /></PageWrapper>} />
+        <Route path="/enquiry" element={<PageWrapper><EnquiryJV /></PageWrapper>} />
+        <Route path="/jointventures" element={<PageWrapper><EnquiryJV /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

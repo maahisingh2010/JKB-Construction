@@ -14,25 +14,24 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-24 pb-20">
-      {/* Services Hero - LIGHT */}
-      <section className="relative py-16 md:py-32 overflow-hidden bg-slate-50 border-b border-slate-100">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#F15A2405_0%,_transparent_70%)] opacity-50" />
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <span className="text-brand-primary font-black tracking-[0.4em] uppercase text-sm mb-6 block">Capabilities</span>
-            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-none mb-10 text-slate-800/90">
-              End-to-End <br /> <span className="text-brand-primary">Solutions.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              We provide a full spectrum of construction and engineering services powered by cutting-edge technology and decades of expertise.
-            </p>
-          </motion.div>
-        </div>
+    <div className="bg-white min-h-screen text-slate-900 pb-20">
+      {/* Services Hero - FULL SCREEN ANIMATED IMAGE */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <motion.div
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img 
+            src="/services_hero.jpg" 
+            alt="End-to-End Solutions" 
+            className="w-full h-full object-cover object-[20%_center] md:object-center"
+          />
+        </motion.div>
+        
+        {/* Optional overlay if text is hard to read, but since text is built-in we can leave it mostly clear. 
+            Adding a very subtle gradient at the top so navbar is visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none" />
       </section>
 
       {/* Services Grid - LIGHT */}
@@ -45,16 +44,16 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-slate-50 p-12 rounded-3xl group transition-all duration-500 hover:bg-white hover:shadow-2xl border border-slate-100"
+              className="bg-slate-50 p-8 rounded-3xl group transition-all duration-500 hover:bg-white hover:shadow-2xl border border-brand-primary/30 hover:border-brand-primary flex flex-col"
             >
-              <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-10 transition-all duration-500 bg-brand-primary/10 text-brand-primary group-hover:bg-brand-primary group-hover:text-white">
-                {React.cloneElement(service.icon, { className: 'h-10 w-10' })}
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 bg-brand-primary/10 text-brand-primary group-hover:bg-brand-primary group-hover:text-white">
+                {React.cloneElement(service.icon, { className: 'h-8 w-8' })}
               </div>
-              <h3 className="text-3xl font-black mb-6 text-slate-900 group-hover:text-brand-primary transition-colors">{service.title}</h3>
-              <p className="text-slate-500 text-lg leading-relaxed group-hover:text-slate-600 transition-colors">
+              <h3 className="text-2xl font-black mb-4 text-slate-900 group-hover:text-brand-primary transition-colors">{service.title}</h3>
+              <p className="text-slate-500 text-base leading-relaxed group-hover:text-slate-600 transition-colors flex-grow">
                 {service.desc}
               </p>
-              <div className="w-0 h-1 mt-10 transition-all duration-700 group-hover:w-full bg-brand-primary" />
+              <div className="w-0 h-1 mt-6 transition-all duration-700 group-hover:w-full bg-brand-primary" />
             </motion.div>
           ))}
         </div>

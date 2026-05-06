@@ -17,7 +17,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-50 pt-12 pb-10 border-t border-slate-100">
+    <footer className="bg-slate-50 pt-12 pb-10 border-t border-slate-100 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* 3-Column Grid */}
@@ -25,8 +25,8 @@ const Footer = () => {
           
           {/* Column 1: Identity & Call - LOGO BACK HERE */}
           <div className="flex flex-col items-start">
-            <Link to="/" className="mb-12 opacity-90 hover:opacity-100 transition-opacity block cursor-pointer">
-              <JKBLogo className="scale-100 origin-left" />
+            <Link to="/" className="mb-8 opacity-90 hover:opacity-100 transition-opacity block cursor-pointer -ml-2">
+              <JKBLogo className="w-48 md:w-56 -my-2" />
             </Link>
 
             <h4 className="text-sm font-black text-slate-900 uppercase tracking-[0.3em] mb-8 border-b-2 border-brand-primary pb-2 inline-block">Call us today</h4>

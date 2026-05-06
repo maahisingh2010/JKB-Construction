@@ -408,7 +408,7 @@ const Home = () => {
       </section>
 
       {/* Valued Clients & Partners Section - Premium Redesign */}
-      <section className="pt-16 pb-16 bg-slate-50/50">
+      <section className="pt-16 pb-16 bg-slate-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-20">
             <motion.span
@@ -426,38 +426,56 @@ const Home = () => {
               Valued Clients & Partners
             </motion.h2>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Sliding Marquee */}
+        <div className="relative w-full overflow-hidden flex pt-4">
+          {/* Gradients for smooth fade out at edges */}
+          <div className="absolute top-0 left-0 w-16 md:w-48 h-full bg-gradient-to-r from-[#f8fafc]/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-16 md:w-48 h-full bg-gradient-to-l from-[#f8fafc]/80 to-transparent z-10 pointer-events-none" />
+          
+          <motion.div 
+            className="flex space-x-6 md:space-x-8 w-max px-4 mt-6"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+          >
             {[
-              "Manglam Ananda",
-              "Garh Aangan",
-              "Business 18",
-              "Utsav"
+              { name: "Manglam Ananda", img: MangalmImage },
+              { name: "Garh Aangan", img: Comp1 },
+              { name: "Business 18", img: Comp2 },
+              { name: "Utsav", img: Comp3 },
+              { name: "Manglam Ananda", img: MangalmImage },
+              { name: "Garh Aangan", img: Comp1 },
+              { name: "Business 18", img: Comp2 },
+              { name: "Utsav", img: Comp3 }
             ].map((brand, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="relative h-44 group"
+                className="relative h-48 md:h-56 w-[280px] md:w-[320px] group flex-shrink-0"
               >
-                {/* Featured Project Badge */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-                  <span className="bg-brand-primary text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-brand-primary/20 whitespace-nowrap">
-                    Featured Project
-                  </span>
+                {/* Card Body with Image and Hover Overlay */}
+                <div className="relative h-full rounded-[32px] overflow-hidden shadow-xl cursor-pointer group">
+                  {/* Background Image */}
+                  <img 
+                    src={brand.img} 
+                    alt={brand.name} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                  />
+                  
+                  {/* Dark overlay: subtle by default, darker on hover */}
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/70 transition-all duration-500" />
+                  
+                  {/* Text Container: Hidden by default, slides up on hover (like About section) */}
+                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-10 group-hover:translate-y-0">
+                    <span className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter leading-tight drop-shadow-md whitespace-normal">
+                      {brand.name}
+                    </span>
+                    <div className="w-8 h-1 bg-brand-primary mt-3 rounded-full shadow-[0_0_10px_rgba(242,101,34,0.5)]" />
+                  </div>
                 </div>
-                
-                {/* Card Body */}
-                <div className="h-full bg-[#FFF3E8] border-2 border-brand-primary rounded-[32px] flex items-center justify-center p-8 shadow-xl transition-all duration-500 hover:scale-105 cursor-pointer hover:bg-white group">
-                  <span className="text-xl md:text-2xl font-black text-slate-900 text-center uppercase tracking-tighter leading-tight group-hover:text-brand-primary transition-colors">
-                    {brand}
-                  </span>
-                </div>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

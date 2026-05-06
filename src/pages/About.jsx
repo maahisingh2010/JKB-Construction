@@ -17,12 +17,29 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-20">
+    <div className="bg-slate-50 min-h-screen text-slate-900 pt-20 relative">
+      
+      {/* Full Page Animated Background Image */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+        <motion.img 
+          src="/about_bg.jpg" 
+          alt="About Background" 
+          animate={{ 
+            scale: [1, 1.05, 1],
+          }}
+          transition={{ 
+            duration: 15, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          className="w-full h-full object-cover opacity-100"
+        />
+        {/* White layer overlay to make text readable */}
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px]"></div>
+      </div>
+
       {/* Cinematic About Hero - LIGHT */}
-      <section className="relative py-16 md:py-32 overflow-hidden bg-slate-50 border-b border-slate-100">
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
-          <span className="text-[25vw] font-black leading-none uppercase text-slate-900">Legend</span>
-        </div>
+      <section className="relative py-16 md:py-32 overflow-hidden bg-transparent border-b border-slate-200/50">
         <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -34,7 +51,7 @@ const About = () => {
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.8] mb-12 text-slate-800/90">
               Engineering <br /> <span className="text-brand-primary">Modernity.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-500 leading-relaxed max-w-2xl">
+            <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-2xl">
               Since our inception, JKB Construction has been at the forefront of the global infrastructure revolution, delivering complex projects with surgical precision.
             </p>
           </motion.div>
@@ -42,7 +59,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Sections - LIGHT */}
-      <Section bg="white" className="clip-slant-reverse py-20 md:py-40">
+      <Section bg="transparent" className="clip-slant-reverse py-20 md:py-40 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -77,7 +94,7 @@ const About = () => {
       </Section>
 
       {/* Core Values */}
-      <Section bg="slate-50" className="py-20 md:py-40">
+      <Section bg="transparent" className="py-20 md:py-40 relative z-10">
         <SectionHeader title="The JKB DNA" subtitle="Core Values" centered />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-20">
           {values.map((value, i) => (
@@ -98,7 +115,7 @@ const About = () => {
       </Section>
 
       {/* Team Section */}
-      <Section bg="white" className="rounded-t-[100px] overflow-hidden">
+      <Section bg="transparent" className="rounded-t-[100px] overflow-hidden relative z-10">
         <SectionHeader title="The Visionaries" subtitle="Leadership" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
           {team.map((member, i) => (

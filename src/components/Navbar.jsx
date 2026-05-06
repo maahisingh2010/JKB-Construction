@@ -6,7 +6,7 @@ import { ChevronDown } from 'lucide-react';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState('');
   const location = useLocation();
 
   useEffect(() => {
@@ -29,8 +29,14 @@ const Navbar = () => {
         { name: 'Complete Projects', path: '/projects?filter=completed' }
       ]
     },
-    { name: 'Jointventures', path: '/jointventures' },
-    { name: 'Enquiry', path: '/enquiry' },
+    { 
+      name: 'Enquiry', 
+      path: '/enquiry',
+      subLinks: [
+        { name: 'General Enquiry', path: '/enquiry' },
+        { name: 'Joint Ventures', path: '/jointventures' }
+      ]
+    },
     { name: 'Careers', path: '/careers' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -41,10 +47,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
         {/* Left Side: JKB Logo */}
-        <Link to="/" className="flex items-center">
-          <div className="transform scale-[0.70] md:scale-[0.80] origin-left py-1">
-            <JKBLogo />
-          </div>
+        <Link to="/" className="flex items-center -ml-2">
+          <JKBLogo className="w-32 md:w-40 lg:w-44 -my-2" />
         </Link>
 
         {/* Right Side: Navigation Links */}
@@ -112,16 +116,16 @@ const Navbar = () => {
               {link.subLinks ? (
                 <div className="w-full">
                   <button 
-                    onClick={() => setMobileProjectsOpen(!mobileProjectsOpen)}
+                    onClick={() => setOpenMobileDropdown(openMobileDropdown === link.name ? '' : link.name)}
                     className={`w-full flex items-center justify-between text-[15px] font-semibold uppercase tracking-widest ${location.pathname === link.path ? 'text-brand-primary' : 'text-slate-900'}`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown 
                       size={22} 
-                      className={`transition-transform duration-300 text-slate-600 ${mobileProjectsOpen ? 'rotate-180' : ''}`} 
+                      className={`transition-transform duration-300 text-slate-600 ${openMobileDropdown === link.name ? 'rotate-180' : ''}`} 
                     />
                   </button>
-                  <div className={`ml-4 space-y-4 overflow-hidden transition-all duration-300 ${mobileProjectsOpen ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
+                  <div className={`ml-4 space-y-4 overflow-hidden transition-all duration-300 ${openMobileDropdown === link.name ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                     {link.subLinks.map((sub) => (
                       <Link
                         key={sub.name}
